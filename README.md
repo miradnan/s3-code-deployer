@@ -1,4 +1,4 @@
-# Pixelvide FMS S3 Code Deployer
+# S3 Code Deployer
 
 ### Command to execute
 ```
