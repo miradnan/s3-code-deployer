@@ -22,10 +22,10 @@ aws:
 deployments:
 - application: staging.example.com
   environment: staging
-  destination: /Users/miradnan/workspace/go/src/github.com/miradnan/codeDeployer/appdir/staging
+  destination: /Users/miradnan/workspace/go/src/github.com/miradnan/s3-code-deployer/appdir/staging
   s3_revision_file: myapp/staging.tar.gz
 - application: www.example.com
   environment: production
-  destination: /Users/miradnan/workspace/go/src/github.com/miradnan/codeDeployer/appdir/production
+  destination: /Users/miradnan/workspace/go/src/github.com/miradnan/s3-code-deployer/appdir/production
   s3_revision_file: myapp/prod.tar.gz
 ```
