@@ -88,7 +88,7 @@ cp etc/init.d/s3-code-deployer $RPM_BUILD_ROOT/etc/init.d/s3-code-deployer
 
 
 %post
-chmod +x %{bin_dir}/%{name}
+chmod +x %{bin_dir}/agent
 chmod +x %{init_dir}/%{name}
 chmod +x /lib/systemd/system/%{name}.service
 
@@ -124,5 +124,5 @@ fi
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
-    * Thu Oct 6 2018 Mir Adnan <miradnanali@gmail.com>
+    * Sun Oct 7 2018 Mir Adnan <miradnanali@gmail.com>
     - Initial version
