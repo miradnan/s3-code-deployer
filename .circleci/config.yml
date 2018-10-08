@@ -4,23 +4,23 @@ workflows:
     jobs:
     - build
 
-#    - test:
-#        requires:
-#        - build
+    - test:
+        requires:
+        - build
 
-#    - test_ubuntu_16_04:
-#        requires:
-#        - test
+    - test_ubuntu:
+        requires:
+        - test
 
-#        - test_rhel_7:
-#          requires:
-#        - test
+    - test_rhel_7:
+        requires:
+        - test
 
-#    - hold:
-#        type: approval
-#        requires:
-#        - test_ubuntu_16_04
-#        #- test_rhel_7
+    - hold:
+        type: approval
+        requires:
+        - test_ubuntu
+        - test_rhel_7
 
     - apt:
         requires:
@@ -228,10 +228,10 @@ jobs:
     - attach_workspace:
         at: shared
     - run: yum install -y rpm-build rpm yum-utils
-        #- run: yum install -y centos-release-SCL epel-release gcc wget rpm-build
-        #- run: yum install -y rpm
+      #- run: yum install -y centos-release-SCL epel-release gcc wget rpm-build
+      #- run: yum install -y rpm
 
-        #mkdir SOURCES
+      #mkdir SOURCES
       #cp s3-code-deployer-$VERSION_NUMBER.tar.gz SOURCES
 
     # RHEL 6
@@ -307,7 +307,7 @@ jobs:
   ####################################################################################
   ####################################################################################
 
-  test_ubuntu_16_04:
+  test_ubuntu:
     docker:
     - image: ubuntu:16.04
     steps:
