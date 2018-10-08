@@ -293,9 +293,9 @@ jobs:
     - image: centos:7
     steps:
     # APT Metadata
-    - run: curl -v -X POST -H "X-GPG-PASSPHRASE:$GPG_PASSPHRASE" -umiradnanali:$BINTRAY_KEY https://api.bintray.com/calc_metadata/S3CodeDeployer/apt
+    - run: curl -v -X POST -H "X-GPG-PASSPHRASE:$GPG_PASSPHRASE" -umiradnanali:$BINTRAY_KEY https://api.bintray.com/calc_metadata/S3CodeDeployerDebian
     # YUM Metadata
-    - run: curl -v -X POST -H "X-GPG-PASSPHRASE:$GPG_PASSPHRASE" -umiradnanali:$BINTRAY_KEY https://api.bintray.com/calc_metadata/S3CodeDeployer/yum
+    - run: curl -v -X POST -H "X-GPG-PASSPHRASE:$GPG_PASSPHRASE" -umiradnanali:$BINTRAY_KEY https://api.bintray.com/calc_metadata/S3CodeDeployerRPM
 
 
   ####################################################################################
