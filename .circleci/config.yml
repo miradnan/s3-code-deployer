@@ -59,16 +59,17 @@ jobs:
     # Build it now
     - run: go build main.go
     - run: du -sh $REPO
+    - run: ls -l
 
     # APT
-    - run: cp main $REPO/builds/debian/etc/s3-code-deployer/bin/s3-code-deployer
+    - run: cp main $REPO/builds/debian/etc/s3-code-deployer/bin/agent
     - run: chmod +x $REPO/builds/debian/etc/init.d/s3-code-deployer
     - run: sed -i "s/VERSION_NUMBER/$VERSION_NUMBER/g" $REPO/builds/debian/DEBIAN/control
     - run: cat $REPO/builds/debian/DEBIAN/control
     - run: chmod -R 755 $REPO/builds/debian/DEBIAN
 
     # YUM
-    - run: cp main $REPO/builds/rpm/package/etc/S3CodeDeployer/bin/s3-code-deployer
+    - run: cp main $REPO/builds/rpm/package/etc/S3CodeDeployer/bin/agent
     - run: chmod +x $REPO/builds/rpm/package/etc/init.d/s3-code-deployer
     - run: sed -i "s/VERSION_NUMBER/$VERSION_NUMBER/g" $REPO/builds/rpm/SPECS/s3-code-deployer.spec
     - run: cat $REPO/builds/rpm/SPECS/s3-code-deployer.spec
