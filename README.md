@@ -1,5 +1,7 @@
 # S3 Code Deployer
 
+[ ![Download](null/packages/miradnanali/S3CodeDeployer/apt/images/download.svg?version=1.1) ](https://bintray.com/miradnanali/S3CodeDeployer/apt/1.1/link)
+
 ### Why I built this?
 I was working with an On-Prem server and I had to install AWS CodeDeploy Agent to get the CI & CD Pipeline.
 CodeDeploy uses ruby version 2.x. Ubuntu 16.04 ships with ruby 2.3 as default and CodeDeploy just doesn't work.
