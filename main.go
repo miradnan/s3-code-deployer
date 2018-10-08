@@ -4,8 +4,8 @@ import (
 	"flag"
 	"fmt"
 	"github.com/fatih/color"
-	"github.com/miradnan/codeDeployer/config"
-	"github.com/miradnan/codeDeployer/deployment"
+	"github.com/miradnan/s3-code-deployer/config"
+	"github.com/miradnan/s3-code-deployer/deployment"
 	"io/ioutil"
 	"log"
 	"time"
@@ -41,15 +41,15 @@ func main() {
 
 		for i := 0; i < len(Config.Deployments); i++ {
 			//go func(i int) {
-				App := &Config.Deployments[i]
+			App := &Config.Deployments[i]
 
-				if len(App.Environment) <= 0 {
-					log.Fatal(color.RedString(fmt.Sprintf("Environment is required in application %s", App.Application)))
-				}
+			if len(App.Environment) <= 0 {
+				log.Fatal(color.RedString(fmt.Sprintf("Environment is required in application %s", App.Application)))
+			}
 
-				color.Yellow(fmt.Sprintf("Environment: %s", App.Environment))
+			color.Yellow(fmt.Sprintf("Environment: %s", App.Environment))
 
-				deployment.Deploy(Config, App)
+			deployment.Deploy(Config, App)
 			//}(i)
 		}
 	}

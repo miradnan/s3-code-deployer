@@ -3,7 +3,7 @@ package deployment
 import (
 	"fmt"
 	"github.com/fatih/color"
-	"github.com/miradnan/codeDeployer/config"
+	"github.com/miradnan/s3-code-deployer/config"
 	"log"
 	"os"
 	"os/exec"
