@@ -43,7 +43,7 @@ func main() {
 	color.Yellow("#################################################")
 
 	// Start running deployments
-	for range time.NewTicker(Config.RevisionCheckDuration * time.Second).C {
+	for range time.NewTicker(Config.RevisionCheckDuration * time.Minute).C {
 		log.Println(color.CyanString(fmt.Sprintf("Executed for %d Minutes", Config.RevisionCheckDuration)))
 
 		for i := 0; i < len(Config.Deployments); i++ {
