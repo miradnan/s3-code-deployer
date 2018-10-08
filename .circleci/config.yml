@@ -37,8 +37,8 @@ workflows:
     - metadata:
         requires:
         - apt
-        - yum_6
-        - yum_7
+#        - yum_6
+#        - yum_7
 
 version: 2
 jobs:
