@@ -54,7 +54,7 @@ jobs:
     - run: go get github.com/fatih/color
     - run: go get github.com/aws/aws-sdk-go/aws
     - run: go get github.com/aws/aws-sdk-go/service/s3
-
+    - run: go get gopkg.in/yaml.v2
 
     # Build it now
     - run: go build main.go
