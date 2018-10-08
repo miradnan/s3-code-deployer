@@ -39,10 +39,12 @@ type AwsConfiguration struct {
 }
 
 var (
-	Config *Configuration
+	Config         *Configuration
+	DeloyerVersion string
 )
 
 func NewConfig() *Configuration {
+	DeloyerVersion = "VERSION_NUMBER"
 	configFile := fmt.Sprintf("%s/config.yml", filepath.Dir(GetDeployerDir()))
 
 	if _, err := os.Stat(configFile); os.IsNotExist(err) {
