@@ -24,15 +24,15 @@ workflows:
 
     - apt:
         requires:
-        - test_ubuntu
+        - hold
 
     - yum_6:
         requires:
-        - test_rhel
+        - hold
 
     - yum_7:
         requires:
-        - test_rhel
+        - hold
 
     - metadata:
         requires:
