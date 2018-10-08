@@ -137,3 +137,17 @@ deployments:
   destination: /var/www/html/www.example.com
   s3_revision_file: example.com/prod.tar.gz
 ```
+
+
+### Running BeforeInstall and AfterInstall Scripts
+You'll have to create two shell-scripts inside a deployment/scripts folder, located inside your application root folder.
+Below is an example. Upon successful deployment the s3-code-deployer will auto run these two scripts if they are available.
+You can write your migration, assets compression and other commands in it.
+
+```
+application_root
+- deployment
+    - scripts
+        - BeforeInstall.sh
+        - AfterInstall.sh
+```
