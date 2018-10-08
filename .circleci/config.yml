@@ -60,6 +60,7 @@ jobs:
     - run: go build main.go
     - run: du -sh $REPO
     - run: ls -l
+    - run: ls -l $REPO
 
     # APT
     - run: cp main $REPO/builds/debian/etc/s3-code-deployer/bin/agent
