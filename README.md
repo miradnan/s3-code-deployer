@@ -75,10 +75,9 @@ echo "deb [arch=amd64] https://dl.bintray.com/miradnanali/S3CodeDeployerDebian w
 ```
 $ apt-get install s3-code-deployer
 ```
+#### See create config.yml file below
 
 
-
-See create config.yml file below
 
 
 ```
