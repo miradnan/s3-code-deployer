@@ -12,7 +12,7 @@ workflows:
         requires:
         - test
 
-    - test_rhel_7:
+    - test_rhel:
         requires:
         - test
 
@@ -20,19 +20,19 @@ workflows:
         type: approval
         requires:
         - test_ubuntu
-        - test_rhel_7
+        - test_rhel
 
     - apt:
         requires:
-        - build
+        - test_ubuntu
 
     - yum_6:
         requires:
-        - build
+        - test_rhel
 
     - yum_7:
         requires:
-        - build
+        - test_rhel
 
     - metadata:
         requires:
