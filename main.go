@@ -12,17 +12,27 @@ import (
 )
 
 var (
-	Quiet  bool
-	Help   bool
-	Config *config.Configuration
+	Quiet   bool
+	Help    bool
+	Version string
+	Config  *config.Configuration
+	Commit  string
+	BuiltAt string
+	BuiltBy string
+	BuiltOn string
 )
 
 func main() {
 
 	flag.BoolVar(&Help, "h", false, "Help info")
 	flag.BoolVar(&Quiet, "q", false, "Execute quietly")
+	flag.StringVar(&Version, "q", "", "Get version of s3-code-deployer")
 
 	flag.Parse()
+
+	fmt.Print("Version info :: ")
+	fmt.Printf("commit: %s ", Commit)
+	fmt.Printf("built @ %s by %s on %s\n", BuiltAt, BuiltBy, BuiltOn)
 
 	Config = config.NewConfig()
 
