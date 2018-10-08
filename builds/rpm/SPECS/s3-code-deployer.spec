@@ -81,7 +81,7 @@ cp etc/init.d/s3-code-deployer $RPM_BUILD_ROOT/etc/init.d/s3-code-deployer
 
 %files
 %defattr(-,root,root,-) 
-%{bin_dir}/%{name}
+%{bin_dir}/agent
 /lib/systemd/system/%{name}.service
 %{init_dir}/%{name}
 #%{usr_dir}
