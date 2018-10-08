@@ -4,35 +4,35 @@ workflows:
     jobs:
     - build
 
-    - test:
-        requires:
-        - build
+#    - test:
+#        requires:
+#        - build
 
-    - test_ubuntu_16_04:
-        requires:
-        - test
+#    - test_ubuntu_16_04:
+#        requires:
+#        - test
 
 #        - test_rhel_7:
 #          requires:
 #        - test
 
-    - hold:
-        type: approval
-        requires:
-        - test_ubuntu_16_04
-        #- test_rhel_7
+#    - hold:
+#        type: approval
+#        requires:
+#        - test_ubuntu_16_04
+#        #- test_rhel_7
 
     - apt:
         requires:
-        - hold
+        - build
 
-    - yum_6:
-        requires:
-        - hold
-
-    - yum_7:
-        requires:
-        - hold
+#    - yum_6:
+#        requires:
+#        - build
+#
+#    - yum_7:
+#        requires:
+#        - build
 
     - metadata:
         requires:
