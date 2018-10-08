@@ -318,7 +318,7 @@ jobs:
     - run: ls -l shared
 
 
-  test_rhel_7:
+  test_rhel:
     docker:
     - image: centos:7
     steps:
