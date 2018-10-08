@@ -1,0 +1,9 @@
+Package: s3-code-deployer
+Priority: optional
+Component: main
+Filename: pool/main/s/s3-code-deployer/s3-code-deployer-CODE_NAME-VERSION_NUMBER-amd64.deb
+Suite: stable
+Architecture: amd64
+Maintainer: Mir Adnan <miradnanali@gmail.com>
+Description: AWS S3 CodeDeployer
+Version: VERSION_NUMBER

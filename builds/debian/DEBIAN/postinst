@@ -1,0 +1,7 @@
+#!/bin/sh -xe
+if [ -f "/etc/init.d/s3-code-deployer" ];
+then
+    update-rc.d s3-code-deployer defaults
+    update-rc.d s3-code-deployer enable
+    /etc/init.d/s3-code-deployer restart
+fi

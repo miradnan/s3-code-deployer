@@ -1,0 +1,11 @@
+#!/bin/sh -xe
+
+if [ ! -d "/etc/s3-code-deployer" ]; then
+    /bin/mkdir /etc/s3-code-deployer
+fi
+
+if [ ! -d "/var/log/s3-code-deployer" ]; then
+    /bin/mkdir /var/log/s3-code-deployer
+    /bin/touch /var/log/s3-code-deployer/agent.log
+    /bin/touch /var/log/s3-code-deployer/agent.err
+fi
