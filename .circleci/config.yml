@@ -57,16 +57,20 @@ jobs:
     - run: go get gopkg.in/yaml.v2
 
     # Build it now
-    - run:
-        name: Package Building
-        command: |
-          go build
-          du -sh $REPO
-          ls -l
-          ls -l $REPO
+    - run: go build main.go
+    - run: du -sh $REPO
+    - run: ls -l
+    - run: ls -l $REPO
 
-
-          cp s3-code-deployer builds/debian/etc/s3-code-deployer/bin/agent
+    # APT
+    - run: echo $REPO
+    - run: pwd
+    - run: ls -l $REPO/builds
+    - run: ls -l $REPO/builds/debian
+    - run: ls -l $REPO/builds/debian/etc/
+    - run: ls -l $REPO/builds/debian/etc/s3-code-deployer
+    - run: ls -l $REPO/builds/debian/etc/s3-code-deployer/bin
+    - run: cp main $REPO/builds/debian/etc/s3-code-deployer/bin/agent
     - run: chmod +x $REPO/builds/debian/etc/init.d/s3-code-deployer
     - run: sed -i "s/VERSION_NUMBER/$VERSION_NUMBER/g" $REPO/builds/debian/DEBIAN/control
     - run: cat $REPO/builds/debian/DEBIAN/control
