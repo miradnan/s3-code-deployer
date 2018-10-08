@@ -1,0 +1,335 @@
+workflows:
+  version: 2
+  packaging:
+    jobs:
+    - build
+
+    - test:
+        requires:
+        - build
+
+    - test_ubuntu_16_04:
+        requires:
+        - test
+
+#        - test_rhel_7:
+#          requires:
+#        - test
+
+    - hold:
+        type: approval
+        requires:
+        - test_ubuntu_16_04
+        #- test_rhel_7
+
+    - apt:
+        requires:
+        - hold
+
+    - yum_6:
+        requires:
+        - hold
+
+    - yum_7:
+        requires:
+        - hold
+
+    - metadata:
+        requires:
+        - apt
+        - yum_6
+        - yum_7
+
+version: 2
+jobs:
+  build:
+    working_directory: /go/src/github.com/miradnan/s3-code-deployer
+    docker:
+    - image: circleci/golang:1.10.4
+    steps:
+    - checkout
+    - run: git config --global url."https://$GITHUB_TOKEN:x-oauth-basic@github.com/".insteadOf "https://github.com/"
+
+    # Build it now
+    - run: go build main.go
+    - run: du -sh $REPO
+
+    # APT
+    - run: cp main $REPO/builds/debian/etc/s3-code-deployer/bin/agent
+    - run: chmod +x $REPO/builds/debian/etc/init.d/s3-code-deployer
+    - run: sed -i "s/VERSION_NUMBER/$VERSION_NUMBER/g" $REPO/builds/debian/DEBIAN/control
+    - run: cat $REPO/builds/debian/DEBIAN/control
+    - run: chmod -R 755 $REPO/builds/debian/DEBIAN
+
+    # YUM
+    - run: cp main $REPO/builds/rpm/package/etc/S3CodeDeployer/bin/s3-code-deployer
+    - run: chmod +x $REPO/builds/rpm/package/etc/init.d/s3-code-deployer
+    - run: sed -i "s/VERSION_NUMBER/$VERSION_NUMBER/g" $REPO/builds/rpm/SPECS/s3-code-deployer.spec
+    - run: cat $REPO/builds/rpm/SPECS/s3-code-deployer.spec
+
+    - run: echo "Build process completed"
+    - run: mkdir shared
+    - run: cp -R $REPO/builds/debian shared/ubuntu
+    - run: cp -R $REPO/builds/rpm shared/rpm
+    - run: cp $REPO/builds/s3-code-deployer.repo shared
+
+    - persist_to_workspace:
+        root: shared
+        paths:
+        - ubuntu
+        - rpm
+        - s3-code-deployer.repo
+  # TEST
+  test:
+    docker:
+    - image: circleci/golang:1.10.4
+    steps:
+    - run: uname -a
+    - run: ls -l
+    # Golang based test cases for libs used
+
+  # APT
+  apt:
+    docker:
+    - image: ubuntu:16.04
+    steps:
+    - run: apt-get update
+    - run: apt-get install -y ca-certificates
+    - attach_workspace:
+        at: shared
+    - run: apt install -y build-essential lintian curl apt-utils
+
+    ###### Ubuntu ##################
+
+    # Xenial 16.04
+    - run:
+        name: Building Xenial Package
+        command: |
+          export CODE_NAME=xenial
+          mkdir $CODE_NAME
+          cp -R shared/* $CODE_NAME
+          cd $CODE_NAME
+          sed -i "s/CODE_NAME/$CODE_NAME/g" ubuntu/DEBIAN/control
+          cat ubuntu/DEBIAN/control
+          dpkg-deb --build ubuntu
+          curl -v -H "X-Bintray-Publish:1" -H "X-Bintray-Override:1" -H "X-Bintray-Debian-Distribution:$CODE_NAME" -H "X-Bintray-Debian-Component:main" -H "X-Bintray-Debian-Architecture:amd64" -H "X-GPG-PASSPHRASE:$GPG_PASSPHRASE" -X PUT -T ubuntu.deb -umiradnanali:$BINTRAY_KEY https://api.bintray.com/content/S3CodeDeployer/apt/agent/$VERSION_NUMBER/pool/main/s/s3-code-deployer/s3-code-deployer-$CODE_NAME-$VERSION_NUMBER-amd64.deb;deb_distribution=$CODE_NAME;deb_component=main;deb_architecture=amd64;
+
+    # Trusty 14.04
+    - run:
+        name: Building Trusty Package
+        command: |
+          export CODE_NAME=trusty
+          mkdir $CODE_NAME
+          cp -R shared/* $CODE_NAME
+          cd $CODE_NAME
+          sed -i "s/CODE_NAME/$CODE_NAME/g" ubuntu/DEBIAN/control
+          cat ubuntu/DEBIAN/control
+          dpkg-deb --build ubuntu
+          curl -v -H "X-Bintray-Publish:1" -H "X-Bintray-Override:1" -H "X-Bintray-Debian-Distribution:$CODE_NAME" -H "X-Bintray-Debian-Component:main" -H "X-Bintray-Debian-Architecture:amd64" -H "X-GPG-PASSPHRASE:$GPG_PASSPHRASE" -X PUT -T ubuntu.deb -umiradnanali:$BINTRAY_KEY https://api.bintray.com/content/S3CodeDeployer/apt/agent/$VERSION_NUMBER/pool/main/s/s3-code-deployer/s3-code-deployer-$CODE_NAME-$VERSION_NUMBER-amd64.deb;deb_distribution=$CODE_NAME;deb_component=main;deb_architecture=amd64;
+
+    # Zesty 14.04
+    - run:
+        name: Building Zesty Package
+        command: |
+          export CODE_NAME=zesty
+          mkdir $CODE_NAME
+          cp -R shared/* $CODE_NAME
+          cd $CODE_NAME
+          sed -i "s/CODE_NAME/$CODE_NAME/g" ubuntu/DEBIAN/control
+          cat ubuntu/DEBIAN/control
+          dpkg-deb --build ubuntu
+          curl -v -H "X-Bintray-Publish:1" -H "X-Bintray-Override:1" -H "X-Bintray-Debian-Distribution:$CODE_NAME" -H "X-Bintray-Debian-Component:main" -H "X-Bintray-Debian-Architecture:amd64" -H "X-GPG-PASSPHRASE:$GPG_PASSPHRASE" -X PUT -T ubuntu.deb -umiradnanali:$BINTRAY_KEY https://api.bintray.com/content/S3CodeDeployer/apt/agent/$VERSION_NUMBER/pool/main/s/s3-code-deployer/s3-code-deployer-$CODE_NAME-$VERSION_NUMBER-amd64.deb;deb_distribution=$CODE_NAME;deb_component=main;deb_architecture=amd64;
+
+    # Artful 14.04
+    - run:
+        name: Building Artful Package
+        command: |
+          export CODE_NAME=artful
+          mkdir $CODE_NAME
+          cp -R shared/* $CODE_NAME
+          cd $CODE_NAME
+          sed -i "s/CODE_NAME/$CODE_NAME/g" ubuntu/DEBIAN/control
+          cat ubuntu/DEBIAN/control
+          dpkg-deb --build ubuntu
+          curl -v -H "X-Bintray-Publish:1" -H "X-Bintray-Override:1" -H "X-Bintray-Debian-Distribution:$CODE_NAME" -H "X-Bintray-Debian-Component:main" -H "X-Bintray-Debian-Architecture:amd64" -H "X-GPG-PASSPHRASE:$GPG_PASSPHRASE" -X PUT -T ubuntu.deb -umiradnanali:$BINTRAY_KEY https://api.bintray.com/content/S3CodeDeployer/apt/agent/$VERSION_NUMBER/pool/main/s/s3-code-deployer/s3-code-deployer-$CODE_NAME-$VERSION_NUMBER-amd64.deb;deb_distribution=$CODE_NAME;deb_component=main;deb_architecture=amd64;
+
+
+    ########## DEBIAN #################
+
+    # Wheezy 7
+    - run:
+        name: Building Wheezy Package
+        command: |
+          export CODE_NAME=wheezy
+          mkdir $CODE_NAME
+          cp -R shared/* $CODE_NAME
+          cd $CODE_NAME
+          sed -i "s/CODE_NAME/$CODE_NAME/g" ubuntu/DEBIAN/control
+          cat ubuntu/DEBIAN/control
+          dpkg-deb --build ubuntu
+          curl -v -H "X-Bintray-Publish:1" -H "X-Bintray-Override:1" -H "X-Bintray-Debian-Distribution:$CODE_NAME" -H "X-Bintray-Debian-Component:main" -H "X-Bintray-Debian-Architecture:amd64" -H "X-GPG-PASSPHRASE:$GPG_PASSPHRASE" -X PUT -T ubuntu.deb -umiradnanali:$BINTRAY_KEY https://api.bintray.com/content/S3CodeDeployer/apt/agent/$VERSION_NUMBER/pool/main/s/s3-code-deployer/s3-code-deployer-$CODE_NAME-$VERSION_NUMBER-amd64.deb;deb_distribution=$CODE_NAME;deb_component=main;deb_architecture=amd64;
+
+    # Jessie 8
+    - run:
+        name: Building Jessie Package
+        command: |
+          export CODE_NAME=jessie
+          mkdir $CODE_NAME
+          cp -R shared/* $CODE_NAME
+          cd $CODE_NAME
+          sed -i "s/CODE_NAME/$CODE_NAME/g" ubuntu/DEBIAN/control
+          cat ubuntu/DEBIAN/control
+          dpkg-deb --build ubuntu
+          curl -v -H "X-Bintray-Publish:1" -H "X-Bintray-Override:1" -H "X-Bintray-Debian-Distribution:$CODE_NAME" -H "X-Bintray-Debian-Component:main" -H "X-Bintray-Debian-Architecture:amd64" -H "X-GPG-PASSPHRASE:$GPG_PASSPHRASE" -X PUT -T ubuntu.deb -umiradnanali:$BINTRAY_KEY https://api.bintray.com/content/S3CodeDeployer/apt/agent/$VERSION_NUMBER/pool/main/s/s3-code-deployer/s3-code-deployer-$CODE_NAME-$VERSION_NUMBER-amd64.deb;deb_distribution=$CODE_NAME;deb_component=main;deb_architecture=amd64;
+
+    # Stretch 9
+    - run:
+        name: Building Stretch Package
+        command: |
+          export CODE_NAME=stretch
+          mkdir $CODE_NAME
+          cp -R shared/* $CODE_NAME
+          cd $CODE_NAME
+          sed -i "s/CODE_NAME/$CODE_NAME/g" ubuntu/DEBIAN/control
+          cat ubuntu/DEBIAN/control
+          dpkg-deb --build ubuntu
+          curl -v -H "X-Bintray-Publish:1" -H "X-Bintray-Override:1" -H "X-Bintray-Debian-Distribution:$CODE_NAME" -H "X-Bintray-Debian-Component:main" -H "X-Bintray-Debian-Architecture:amd64" -H "X-GPG-PASSPHRASE:$GPG_PASSPHRASE" -X PUT -T ubuntu.deb -umiradnanali:$BINTRAY_KEY https://api.bintray.com/content/S3CodeDeployer/apt/agent/$VERSION_NUMBER/pool/main/s/s3-code-deployer/s3-code-deployer-$CODE_NAME-$VERSION_NUMBER-amd64.deb;deb_distribution=$CODE_NAME;deb_component=main;deb_architecture=amd64;
+
+    # Buster 10
+    - run:
+        name: Building Buster Package
+        command: |
+          export CODE_NAME=buster
+          mkdir $CODE_NAME
+          cp -R shared/* $CODE_NAME
+          cd $CODE_NAME
+          sed -i "s/CODE_NAME/$CODE_NAME/g" ubuntu/DEBIAN/control
+          cat ubuntu/DEBIAN/control
+          dpkg-deb --build ubuntu
+          curl -v -H "X-Bintray-Publish:1" -H "X-Bintray-Override:1" -H "X-Bintray-Debian-Distribution:$CODE_NAME" -H "X-Bintray-Debian-Component:main" -H "X-Bintray-Debian-Architecture:amd64" -H "X-GPG-PASSPHRASE:$GPG_PASSPHRASE" -X PUT -T ubuntu.deb -umiradnanali:$BINTRAY_KEY https://api.bintray.com/content/S3CodeDeployer/apt/agent/$VERSION_NUMBER/pool/main/s/s3-code-deployer/s3-code-deployer-$CODE_NAME-$VERSION_NUMBER-amd64.deb;deb_distribution=$CODE_NAME;deb_component=main;deb_architecture=amd64;
+
+  ######## YUM ##################
+  yum_6:
+    docker:
+    - image: centos:6.6
+    steps:
+    #- run: yum update -y
+    - run: yum install -y ca-certificates tar
+    - attach_workspace:
+        at: shared
+    - run: yum install -y rpm-build rpm yum-utils
+        #- run: yum install -y centos-release-SCL epel-release gcc wget rpm-build
+        #- run: yum install -y rpm
+
+        #mkdir SOURCES
+      #cp s3-code-deployer-$VERSION_NUMBER.tar.gz SOURCES
+
+    # RHEL 6
+    - run:
+        name: Building RHEL 6 Package
+        command: |
+          export CODE_NAME=6
+          export FOLDER=s3-code-deployer-$VERSION_NUMBER
+          export RPM_BUILD=/root/rpmbuild
+
+          mkdir $FOLDER
+          mkdir $RPM_BUILD
+
+          cp -R shared/rpm/* $RPM_BUILD
+
+          cp -R $RPM_BUILD/package/* $FOLDER
+          rm -rf $RPM_BUILD/package
+
+          tar -zcvf s3-code-deployer-$VERSION_NUMBER.tar.gz $FOLDER/*
+          du -sh s3-code-deployer-$VERSION_NUMBER.tar.gz
+          cp s3-code-deployer-$VERSION_NUMBER.tar.gz $RPM_BUILD/SOURCES
+          rpmbuild -ba $RPM_BUILD/SPECS/s3-code-deployer.spec
+          du -sh $RPM_BUILD/RPMS/x86_64/s3-code-deployer-$VERSION_NUMBER-el$CODE_NAME.x86_64.rpm
+          cp $RPM_BUILD/RPMS/x86_64/s3-code-deployer-$VERSION_NUMBER-el$CODE_NAME.x86_64.rpm .
+          curl -v -H "X-Bintray-Publish:1" -H "X-Bintray-Override:1" -H "X-GPG-PASSPHRASE:$GPG_PASSPHRASE" -X PUT -T s3-code-deployer-$VERSION_NUMBER-el$CODE_NAME.x86_64.rpm -umiradnanali:$BINTRAY_KEY https://api.bintray.com/content/S3CodeDeployer/yum/agent/$VERSION_NUMBER/s3-code-deployer-$VERSION_NUMBER-el$CODE_NAME.x86_64.rpm
+
+          # Repo File
+          # cp shared/s3-code-deployer.repo .
+          # sed -i "s/LINUX_VERSION/$CODE_NAME/g" s3-code-deployer.repo
+          # curl -v -H "X-Bintray-Publish:1" -H "X-Bintray-Override:1" -X PUT -T s3-code-deployer.repo -umiradnanali:$BINTRAY_KEY https://api.bintray.com/content/S3CodeDeployer/yum/el6/$VERSION_NUMBER/s3-code-deployer.repo
+
+          # export CODE_NAME=7
+          # cp s3-code-deployer-$VERSION_NUMBER-el6.x86_64.rpm s3-code-deployer-$VERSION_NUMBER-el$CODE_NAME.x86_64.rpm
+          # curl -v -H "X-Bintray-Publish:1" -H "X-Bintray-Override:1" -H "X-GPG-PASSPHRASE:$GPG_PASSPHRASE" -X PUT -T s3-code-deployer-$VERSION_NUMBER-el$CODE_NAME.x86_64.rpm -umiradnanali:$BINTRAY_KEY https://api.bintray.com/content/S3CodeDeployer/yum/agent/$VERSION_NUMBER/el/$CODE_NAME/x86_64/s3-code-deployer-$VERSION_NUMBER-el$CODE_NAME.x86_64.rpm
+          # curl -v -X POST -H "X-GPG-PASSPHRASE:$GPG_PASSPHRASE" -umiradnanali:$BINTRAY_KEY https://api.bintray.com/calc_metadata/S3CodeDeployer/yum/el/$CODE_NAME/x86_64/
+
+
+  yum_7:
+    docker:
+    - image: centos:7
+    steps:
+    - run: yum install -y ca-certificates tar
+    - attach_workspace:
+        at: shared
+    - run: yum install -y rpm-build rpm yum-utils
+    # RHEL 7
+    - run:
+        name: Building RHEL 7 Package
+        command: |
+          export CODE_NAME=7
+          export FOLDER=s3-code-deployer-$VERSION_NUMBER
+          export RPM_BUILD=/root/rpmbuild
+
+          mkdir $FOLDER
+          mkdir $RPM_BUILD
+
+          cp -R shared/rpm/* $RPM_BUILD
+
+          cp -R $RPM_BUILD/package/* $FOLDER
+          rm -rf $RPM_BUILD/package
+
+          tar -zcvf s3-code-deployer-$VERSION_NUMBER.tar.gz $FOLDER/*
+          du -sh s3-code-deployer-$VERSION_NUMBER.tar.gz
+          cp s3-code-deployer-$VERSION_NUMBER.tar.gz $RPM_BUILD/SOURCES
+          rpmbuild -ba $RPM_BUILD/SPECS/s3-code-deployer.spec
+          du -sh $RPM_BUILD/RPMS/x86_64/s3-code-deployer-$VERSION_NUMBER-el$CODE_NAME.x86_64.rpm
+          cp $RPM_BUILD/RPMS/x86_64/s3-code-deployer-$VERSION_NUMBER-el$CODE_NAME.x86_64.rpm .
+          curl -v -H "X-Bintray-Publish:1" -H "X-Bintray-Override:1" -H "X-GPG-PASSPHRASE:$GPG_PASSPHRASE" -X PUT -T s3-code-deployer-$VERSION_NUMBER-el$CODE_NAME.x86_64.rpm -umiradnanali:$BINTRAY_KEY https://api.bintray.com/content/S3CodeDeployer/yum/agent/$VERSION_NUMBER/s3-code-deployer-$VERSION_NUMBER-el$CODE_NAME.x86_64.rpm
+
+          # Repo File
+          # cp shared/s3-code-deployer.repo .
+          # sed -i "s/LINUX_VERSION/$CODE_NAME/g" s3-code-deployer.repo
+          # curl -v -H "X-Bintray-Publish:1" -H "X-Bintray-Override:1" -X PUT -T s3-code-deployer.repo -umiradnanali:$BINTRAY_KEY https://api.bintray.com/content/S3CodeDeployer/yum/el7/$VERSION_NUMBER/s3-code-deployer.repo
+
+  # Generate Metadata
+  metadata:
+    docker:
+    - image: centos:7
+    steps:
+    # APT Metadata
+    - run: curl -v -X POST -H "X-GPG-PASSPHRASE:$GPG_PASSPHRASE" -umiradnanali:$BINTRAY_KEY https://api.bintray.com/calc_metadata/S3CodeDeployer/apt
+    # YUM Metadata
+    - run: curl -v -X POST -H "X-GPG-PASSPHRASE:$GPG_PASSPHRASE" -umiradnanali:$BINTRAY_KEY https://api.bintray.com/calc_metadata/S3CodeDeployer/yum
+
+
+  ####################################################################################
+  ####################################################################################
+  ###################### TEST FOR EACH OS ############################################
+  ####################################################################################
+  ####################################################################################
+
+  test_ubuntu_16_04:
+    docker:
+    - image: ubuntu:16.04
+    steps:
+    - run: apt-get update -y
+    - run: apt-get install -y ca-certificates
+    - attach_workspace:
+        at: shared
+    - run: ls -l shared
+
+
+  test_rhel_7:
+    docker:
+    - image: centos:7
+    steps:
+    - run: yum update -y
+    - run: yum install -y ca-certificates
+    - attach_workspace:
+        at: shared
+    - run: ls -l shared
