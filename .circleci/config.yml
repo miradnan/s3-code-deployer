@@ -70,7 +70,7 @@ jobs:
     - run: chmod -R 755 $REPO/builds/debian/DEBIAN
 
     # YUM
-    - run: cp main $REPO/builds/rpm/package/etc/S3CodeDeployer/bin/agent
+    - run: cp main $REPO/builds/rpm/package/etc/s3-code-deployer/bin/agent
     - run: chmod +x $REPO/builds/rpm/package/etc/init.d/s3-code-deployer
     - run: sed -i "s/VERSION_NUMBER/$VERSION_NUMBER/g" $REPO/builds/rpm/SPECS/s3-code-deployer.spec
     - run: cat $REPO/builds/rpm/SPECS/s3-code-deployer.spec
