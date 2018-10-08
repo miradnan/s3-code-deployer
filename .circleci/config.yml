@@ -118,7 +118,7 @@ jobs:
           sed -i "s/CODE_NAME/$CODE_NAME/g" ubuntu/DEBIAN/control
           cat ubuntu/DEBIAN/control
           dpkg-deb --build ubuntu
-          curl -v -H "X-Bintray-Publish:1" -H "X-Bintray-Override:1" -H "X-Bintray-Debian-Distribution:$CODE_NAME" -H "X-Bintray-Debian-Component:main" -H "X-Bintray-Debian-Architecture:amd64" -H "X-GPG-PASSPHRASE:$GPG_PASSPHRASE" -X PUT -T ubuntu.deb -umiradnanali:$BINTRAY_KEY https://api.bintray.com/content/S3CodeDeployer/apt/$VERSION_NUMBER/pool/main/s/s3-code-deployer/s3-code-deployer-$CODE_NAME-$VERSION_NUMBER-amd64.deb;deb_distribution=$CODE_NAME;deb_component=main;deb_architecture=amd64;
+          curl -v -H "X-Bintray-Publish:1" -H "X-Bintray-Override:1" -H "X-Bintray-Debian-Distribution:$CODE_NAME" -H "X-Bintray-Debian-Component:main" -H "X-Bintray-Debian-Architecture:amd64" -H "X-GPG-PASSPHRASE:$GPG_PASSPHRASE" -X PUT -T ubuntu.deb -umiradnanali:$BINTRAY_KEY https://api.bintray.com/content/miradnanali/S3CodeDeployer/apt/$VERSION_NUMBER/pool/main/s/s3-code-deployer/s3-code-deployer-$CODE_NAME-$VERSION_NUMBER-amd64.deb;deb_distribution=$CODE_NAME;deb_component=main;deb_architecture=amd64;
 
     # Trusty 14.04
     - run:
