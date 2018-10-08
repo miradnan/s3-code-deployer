@@ -5,7 +5,7 @@
 ### Why I built this?
 I was working with an On-Prem server and I had to install AWS CodeDeploy Agent to get the CI & CD Pipeline.
 CodeDeploy uses ruby version 2.x. Ubuntu 16.04 ships with ruby 2.3 as default and CodeDeploy just doesn't work.
-So, I thought why not write it in GoLang. Go is best suited for this job. No dependencies at all.
+So, I thought why not write it in GoLang. Go is best suited for this job. No dependencies at all. Just a binary file that runs as a service just.
 
 
 
@@ -19,7 +19,6 @@ So, I thought why not write it in GoLang. Go is best suited for this job. No dep
 ```
 wget - no-cache -O - https://api.bintray.com/users/miradnanali/keys/gpg/public.key | sudo apt-key add -
 ```
-
 
 ### Add Source List
 
@@ -56,6 +55,9 @@ echo "deb [arch=amd64] https://dl.bintray.com/miradnanali/S3CodeDeployerDebian w
 $ apt-get install s3-code-deployer
 ```
 
+See create config.yml file below
+
+
 ```
 ################################################################
 ########################## RPM PACKAGE #########################
@@ -69,10 +71,22 @@ rpm --import https://api.bintray.com/users/miradnanali/keys/gpg/public.key
 
 #### Add Repo
 ```
-sudo echo "" > /etc/yum.repos.d/s3-code-deployer.repo
-
+sudo echo "
+[s3-code-deployer]
+name=s3-code-deployer
+baseurl=https://api.bintray.com/content/miradnanali/S3CodeDeployerRPM
+gpgkey=https://api.bintray.com/users/miradnanali/keys/gpg/public.key
+gpgcheck=0
+enabled=1
+repo_gpgcheck=1
+" > /etc/yum.repos.d/s3-code-deployer.repo
 ```
 
+##### Update Yum cache:
+```sudo yum update```
+
+##### Install
+```sudo yum install -y s3-code-deployer```
 
 
 ### Create a `config.yml` file in `/etc/s3-code-deployer/config.yml`. Below is a Sample config.yml.
