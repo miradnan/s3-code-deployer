@@ -220,7 +220,7 @@ jobs:
     docker:
     - image: centos:6.6
     steps:
-    #- run: yum update -y
+    - run: yum update -y
     - run: yum install -y ca-certificates tar
     - attach_workspace:
         at: shared
