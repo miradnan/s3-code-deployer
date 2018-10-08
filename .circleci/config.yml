@@ -61,7 +61,7 @@ jobs:
     - run: du -sh $REPO
 
     # APT
-    - run: cp main $REPO/builds/debian/etc/s3-code-deployer/bin/agent
+    - run: cp main $REPO/builds/debian/etc/s3-code-deployer/bin/s3-code-deployer
     - run: chmod +x $REPO/builds/debian/etc/init.d/s3-code-deployer
     - run: sed -i "s/VERSION_NUMBER/$VERSION_NUMBER/g" $REPO/builds/debian/DEBIAN/control
     - run: cat $REPO/builds/debian/DEBIAN/control
