@@ -1,5 +1,5 @@
 [Unit]
-Description=S3 CodeDeployer
+Description=S3CodeDeployer
 After=network-online.target
 
 [Service]
