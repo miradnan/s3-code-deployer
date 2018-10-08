@@ -57,7 +57,7 @@ jobs:
     - run: go get gopkg.in/yaml.v2
 
     # Build it now
-    - run: go build main.go -ldflags "-X main.commit ${commit} -X main.builtAt '${built_at}' -X main.builtBy ${built_by} -X main.builtOn ${built_on}"
+    - run: go build main.go -ldflags "-X main.commit $(echo $CIRCLE_SHA1 | cut -c -7) -X main.builtAt '${built_at}' -X main.builtBy ${built_by} -X main.builtOn ${built_on}"
     - run: du -sh $REPO
 
     # APT
