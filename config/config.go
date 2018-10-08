@@ -43,7 +43,7 @@ var (
 )
 
 func NewConfig() *Configuration {
-	configFile := fmt.Sprintf("%s/config.yml", GetDeployerDir())
+	configFile := fmt.Sprintf("%s/config.yml", filepath.Dir(GetDeployerDir()))
 
 	if _, err := os.Stat(configFile); os.IsNotExist(err) {
 		log.Fatal(color.RedString("No config.yml file found"))
