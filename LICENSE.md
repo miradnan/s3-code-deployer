@@ -1,10 +1,8 @@
-You are hereby granted a non-exclusive, worldwide, royalty-free license to
-use, copy this software in source code or binary form as provided.
+# LICENSE
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
-THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
-DEALINGS IN THE SOFTWARE.
+By contributing to S3CodeDeployer you agree that your contributions will be licensed
+under the terms of both the [LICENSE-Apache-2.0](LICENSE-Apache-2.0) and the
+[LICENSE-GPL-2.0](LICENSE-GPL-2.0) files in the root of this source tree.
+
+If you're using S3CodeDeployer you are free to choose one of the provided licenses.
+
