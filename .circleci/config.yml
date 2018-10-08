@@ -50,6 +50,11 @@ jobs:
     - checkout
     - run: git config --global url."https://$GITHUB_TOKEN:x-oauth-basic@github.com/".insteadOf "https://github.com/"
 
+    # Packages Used
+    - run: go get github.com/fatih/color
+    - run: go get github.com/aws/aws-sdk-go/aws
+    - run: go get github.com/aws/aws-sdk-go/service/s3
+
     # Build it now
     - run: go build main.go
     - run: du -sh $REPO
