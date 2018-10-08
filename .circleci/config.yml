@@ -118,7 +118,7 @@ jobs:
           sed -i "s/CODE_NAME/$CODE_NAME/g" ubuntu/DEBIAN/control
           cat ubuntu/DEBIAN/control
           dpkg-deb --build ubuntu
-          curl -v -H "X-Bintray-Publish:1" -H "X-Bintray-Override:1" -H "X-Bintray-Debian-Distribution:$CODE_NAME" -H "X-Bintray-Debian-Component:main" -H "X-Bintray-Debian-Architecture:amd64" -H "X-GPG-PASSPHRASE:$GPG_PASSPHRASE" -X PUT -T ubuntu.deb -umiradnanali:$BINTRAY_KEY https://api.bintray.com/content/miradnanali/S3CodeDeployer/apt/$VERSION_NUMBER/pool/main/s/s3-code-deployer/s3-code-deployer-$CODE_NAME-$VERSION_NUMBER-amd64.deb;deb_distribution=$CODE_NAME;deb_component=main;deb_architecture=amd64;
+          curl -v -H "X-Bintray-Publish:1" -H "X-Bintray-Override:1" -H "X-Bintray-Debian-Distribution:$CODE_NAME" -H "X-Bintray-Debian-Component:main" -H "X-Bintray-Debian-Architecture:amd64" -H "X-GPG-PASSPHRASE:$GPG_PASSPHRASE" -X PUT -T ubuntu.deb -umiradnanali:$BINTRAY_KEY https://api.bintray.com/content/miradnanali/S3CodeDeployerDebian/agent/$VERSION_NUMBER/pool/main/s/s3-code-deployer/s3-code-deployer-$CODE_NAME-$VERSION_NUMBER-amd64.deb;deb_distribution=$CODE_NAME;deb_component=main;deb_architecture=amd64;
 
 
     # Trusty 14.04
@@ -132,7 +132,7 @@ jobs:
           sed -i "s/CODE_NAME/$CODE_NAME/g" ubuntu/DEBIAN/control
           cat ubuntu/DEBIAN/control
           dpkg-deb --build ubuntu
-          curl -v -H "X-Bintray-Publish:1" -H "X-Bintray-Override:1" -H "X-Bintray-Debian-Distribution:$CODE_NAME" -H "X-Bintray-Debian-Component:main" -H "X-Bintray-Debian-Architecture:amd64" -H "X-GPG-PASSPHRASE:$GPG_PASSPHRASE" -X PUT -T ubuntu.deb -umiradnanali:$BINTRAY_KEY https://api.bintray.com/content/miradnanali/S3CodeDeployer/apt/$VERSION_NUMBER/pool/main/s/s3-code-deployer/s3-code-deployer-$CODE_NAME-$VERSION_NUMBER-amd64.deb;deb_distribution=$CODE_NAME;deb_component=main;deb_architecture=amd64;
+          curl -v -H "X-Bintray-Publish:1" -H "X-Bintray-Override:1" -H "X-Bintray-Debian-Distribution:$CODE_NAME" -H "X-Bintray-Debian-Component:main" -H "X-Bintray-Debian-Architecture:amd64" -H "X-GPG-PASSPHRASE:$GPG_PASSPHRASE" -X PUT -T ubuntu.deb -umiradnanali:$BINTRAY_KEY https://api.bintray.com/content/miradnanali/S3CodeDeployerDebian/agent/$VERSION_NUMBER/pool/main/s/s3-code-deployer/s3-code-deployer-$CODE_NAME-$VERSION_NUMBER-amd64.deb;deb_distribution=$CODE_NAME;deb_component=main;deb_architecture=amd64;
 
     # Zesty 14.04
     - run:
@@ -145,7 +145,7 @@ jobs:
           sed -i "s/CODE_NAME/$CODE_NAME/g" ubuntu/DEBIAN/control
           cat ubuntu/DEBIAN/control
           dpkg-deb --build ubuntu
-          curl -v -H "X-Bintray-Publish:1" -H "X-Bintray-Override:1" -H "X-Bintray-Debian-Distribution:$CODE_NAME" -H "X-Bintray-Debian-Component:main" -H "X-Bintray-Debian-Architecture:amd64" -H "X-GPG-PASSPHRASE:$GPG_PASSPHRASE" -X PUT -T ubuntu.deb -umiradnanali:$BINTRAY_KEY https://api.bintray.com/content/miradnanali/S3CodeDeployer/apt/$VERSION_NUMBER/pool/main/s/s3-code-deployer/s3-code-deployer-$CODE_NAME-$VERSION_NUMBER-amd64.deb;deb_distribution=$CODE_NAME;deb_component=main;deb_architecture=amd64;
+          curl -v -H "X-Bintray-Publish:1" -H "X-Bintray-Override:1" -H "X-Bintray-Debian-Distribution:$CODE_NAME" -H "X-Bintray-Debian-Component:main" -H "X-Bintray-Debian-Architecture:amd64" -H "X-GPG-PASSPHRASE:$GPG_PASSPHRASE" -X PUT -T ubuntu.deb -umiradnanali:$BINTRAY_KEY https://api.bintray.com/content/miradnanali/S3CodeDeployerDebian/agent/$VERSION_NUMBER/pool/main/s/s3-code-deployer/s3-code-deployer-$CODE_NAME-$VERSION_NUMBER-amd64.deb;deb_distribution=$CODE_NAME;deb_component=main;deb_architecture=amd64;
 
     # Artful 14.04
     - run:
@@ -158,7 +158,7 @@ jobs:
           sed -i "s/CODE_NAME/$CODE_NAME/g" ubuntu/DEBIAN/control
           cat ubuntu/DEBIAN/control
           dpkg-deb --build ubuntu
-          curl -v -H "X-Bintray-Publish:1" -H "X-Bintray-Override:1" -H "X-Bintray-Debian-Distribution:$CODE_NAME" -H "X-Bintray-Debian-Component:main" -H "X-Bintray-Debian-Architecture:amd64" -H "X-GPG-PASSPHRASE:$GPG_PASSPHRASE" -X PUT -T ubuntu.deb -umiradnanali:$BINTRAY_KEY https://api.bintray.com/content/miradnanali/S3CodeDeployer/apt/$VERSION_NUMBER/pool/main/s/s3-code-deployer/s3-code-deployer-$CODE_NAME-$VERSION_NUMBER-amd64.deb;deb_distribution=$CODE_NAME;deb_component=main;deb_architecture=amd64;
+          curl -v -H "X-Bintray-Publish:1" -H "X-Bintray-Override:1" -H "X-Bintray-Debian-Distribution:$CODE_NAME" -H "X-Bintray-Debian-Component:main" -H "X-Bintray-Debian-Architecture:amd64" -H "X-GPG-PASSPHRASE:$GPG_PASSPHRASE" -X PUT -T ubuntu.deb -umiradnanali:$BINTRAY_KEY https://api.bintray.com/content/miradnanali/S3CodeDeployerDebian/agent/$VERSION_NUMBER/pool/main/s/s3-code-deployer/s3-code-deployer-$CODE_NAME-$VERSION_NUMBER-amd64.deb;deb_distribution=$CODE_NAME;deb_component=main;deb_architecture=amd64;
 
 
     ########## DEBIAN #################
@@ -174,7 +174,7 @@ jobs:
           sed -i "s/CODE_NAME/$CODE_NAME/g" ubuntu/DEBIAN/control
           cat ubuntu/DEBIAN/control
           dpkg-deb --build ubuntu
-          curl -v -H "X-Bintray-Publish:1" -H "X-Bintray-Override:1" -H "X-Bintray-Debian-Distribution:$CODE_NAME" -H "X-Bintray-Debian-Component:main" -H "X-Bintray-Debian-Architecture:amd64" -H "X-GPG-PASSPHRASE:$GPG_PASSPHRASE" -X PUT -T ubuntu.deb -umiradnanali:$BINTRAY_KEY https://api.bintray.com/content/miradnanali/S3CodeDeployer/apt/$VERSION_NUMBER/pool/main/s/s3-code-deployer/s3-code-deployer-$CODE_NAME-$VERSION_NUMBER-amd64.deb;deb_distribution=$CODE_NAME;deb_component=main;deb_architecture=amd64;
+          curl -v -H "X-Bintray-Publish:1" -H "X-Bintray-Override:1" -H "X-Bintray-Debian-Distribution:$CODE_NAME" -H "X-Bintray-Debian-Component:main" -H "X-Bintray-Debian-Architecture:amd64" -H "X-GPG-PASSPHRASE:$GPG_PASSPHRASE" -X PUT -T ubuntu.deb -umiradnanali:$BINTRAY_KEY https://api.bintray.com/content/miradnanali/S3CodeDeployerDebian/agent/$VERSION_NUMBER/pool/main/s/s3-code-deployer/s3-code-deployer-$CODE_NAME-$VERSION_NUMBER-amd64.deb;deb_distribution=$CODE_NAME;deb_component=main;deb_architecture=amd64;
 
     # Jessie 8
     - run:
@@ -187,7 +187,7 @@ jobs:
           sed -i "s/CODE_NAME/$CODE_NAME/g" ubuntu/DEBIAN/control
           cat ubuntu/DEBIAN/control
           dpkg-deb --build ubuntu
-          curl -v -H "X-Bintray-Publish:1" -H "X-Bintray-Override:1" -H "X-Bintray-Debian-Distribution:$CODE_NAME" -H "X-Bintray-Debian-Component:main" -H "X-Bintray-Debian-Architecture:amd64" -H "X-GPG-PASSPHRASE:$GPG_PASSPHRASE" -X PUT -T ubuntu.deb -umiradnanali:$BINTRAY_KEY https://api.bintray.com/content/miradnanali/S3CodeDeployer/apt/$VERSION_NUMBER/pool/main/s/s3-code-deployer/s3-code-deployer-$CODE_NAME-$VERSION_NUMBER-amd64.deb;deb_distribution=$CODE_NAME;deb_component=main;deb_architecture=amd64;
+          curl -v -H "X-Bintray-Publish:1" -H "X-Bintray-Override:1" -H "X-Bintray-Debian-Distribution:$CODE_NAME" -H "X-Bintray-Debian-Component:main" -H "X-Bintray-Debian-Architecture:amd64" -H "X-GPG-PASSPHRASE:$GPG_PASSPHRASE" -X PUT -T ubuntu.deb -umiradnanali:$BINTRAY_KEY https://api.bintray.com/content/miradnanali/S3CodeDeployerDebian/agent/$VERSION_NUMBER/pool/main/s/s3-code-deployer/s3-code-deployer-$CODE_NAME-$VERSION_NUMBER-amd64.deb;deb_distribution=$CODE_NAME;deb_component=main;deb_architecture=amd64;
 
     # Stretch 9
     - run:
@@ -200,7 +200,7 @@ jobs:
           sed -i "s/CODE_NAME/$CODE_NAME/g" ubuntu/DEBIAN/control
           cat ubuntu/DEBIAN/control
           dpkg-deb --build ubuntu
-          curl -v -H "X-Bintray-Publish:1" -H "X-Bintray-Override:1" -H "X-Bintray-Debian-Distribution:$CODE_NAME" -H "X-Bintray-Debian-Component:main" -H "X-Bintray-Debian-Architecture:amd64" -H "X-GPG-PASSPHRASE:$GPG_PASSPHRASE" -X PUT -T ubuntu.deb -umiradnanali:$BINTRAY_KEY https://api.bintray.com/content/miradnanali/S3CodeDeployer/apt/$VERSION_NUMBER/pool/main/s/s3-code-deployer/s3-code-deployer-$CODE_NAME-$VERSION_NUMBER-amd64.deb;deb_distribution=$CODE_NAME;deb_component=main;deb_architecture=amd64;
+          curl -v -H "X-Bintray-Publish:1" -H "X-Bintray-Override:1" -H "X-Bintray-Debian-Distribution:$CODE_NAME" -H "X-Bintray-Debian-Component:main" -H "X-Bintray-Debian-Architecture:amd64" -H "X-GPG-PASSPHRASE:$GPG_PASSPHRASE" -X PUT -T ubuntu.deb -umiradnanali:$BINTRAY_KEY https://api.bintray.com/content/miradnanali/S3CodeDeployerDebian/agent/$VERSION_NUMBER/pool/main/s/s3-code-deployer/s3-code-deployer-$CODE_NAME-$VERSION_NUMBER-amd64.deb;deb_distribution=$CODE_NAME;deb_component=main;deb_architecture=amd64;
 
     # Buster 10
     - run:
@@ -213,7 +213,7 @@ jobs:
           sed -i "s/CODE_NAME/$CODE_NAME/g" ubuntu/DEBIAN/control
           cat ubuntu/DEBIAN/control
           dpkg-deb --build ubuntu
-          curl -v -H "X-Bintray-Publish:1" -H "X-Bintray-Override:1" -H "X-Bintray-Debian-Distribution:$CODE_NAME" -H "X-Bintray-Debian-Component:main" -H "X-Bintray-Debian-Architecture:amd64" -H "X-GPG-PASSPHRASE:$GPG_PASSPHRASE" -X PUT -T ubuntu.deb -umiradnanali:$BINTRAY_KEY https://api.bintray.com/content/miradnanali/S3CodeDeployer/apt/$VERSION_NUMBER/pool/main/s/s3-code-deployer/s3-code-deployer-$CODE_NAME-$VERSION_NUMBER-amd64.deb;deb_distribution=$CODE_NAME;deb_component=main;deb_architecture=amd64;
+          curl -v -H "X-Bintray-Publish:1" -H "X-Bintray-Override:1" -H "X-Bintray-Debian-Distribution:$CODE_NAME" -H "X-Bintray-Debian-Component:main" -H "X-Bintray-Debian-Architecture:amd64" -H "X-GPG-PASSPHRASE:$GPG_PASSPHRASE" -X PUT -T ubuntu.deb -umiradnanali:$BINTRAY_KEY https://api.bintray.com/content/miradnanali/S3CodeDeployerDebian/agent/$VERSION_NUMBER/pool/main/s/s3-code-deployer/s3-code-deployer-$CODE_NAME-$VERSION_NUMBER-amd64.deb;deb_distribution=$CODE_NAME;deb_component=main;deb_architecture=amd64;
 
   ######## YUM ##################
   yum_6:
@@ -253,18 +253,7 @@ jobs:
           rpmbuild -ba $RPM_BUILD/SPECS/s3-code-deployer.spec
           du -sh $RPM_BUILD/RPMS/x86_64/s3-code-deployer-$VERSION_NUMBER-el$CODE_NAME.x86_64.rpm
           cp $RPM_BUILD/RPMS/x86_64/s3-code-deployer-$VERSION_NUMBER-el$CODE_NAME.x86_64.rpm .
-          curl -v -H "X-Bintray-Publish:1" -H "X-Bintray-Override:1" -H "X-GPG-PASSPHRASE:$GPG_PASSPHRASE" -X PUT -T s3-code-deployer-$VERSION_NUMBER-el$CODE_NAME.x86_64.rpm -umiradnanali:$BINTRAY_KEY https://api.bintray.com/content/S3CodeDeployer/yum/$VERSION_NUMBER/s3-code-deployer-$VERSION_NUMBER-el$CODE_NAME.x86_64.rpm
-
-          # Repo File
-          # cp shared/s3-code-deployer.repo .
-          # sed -i "s/LINUX_VERSION/$CODE_NAME/g" s3-code-deployer.repo
-          # curl -v -H "X-Bintray-Publish:1" -H "X-Bintray-Override:1" -X PUT -T s3-code-deployer.repo -umiradnanali:$BINTRAY_KEY https://api.bintray.com/content/S3CodeDeployer/yum/el6/$VERSION_NUMBER/s3-code-deployer.repo
-
-          # export CODE_NAME=7
-          # cp s3-code-deployer-$VERSION_NUMBER-el6.x86_64.rpm s3-code-deployer-$VERSION_NUMBER-el$CODE_NAME.x86_64.rpm
-          # curl -v -H "X-Bintray-Publish:1" -H "X-Bintray-Override:1" -H "X-GPG-PASSPHRASE:$GPG_PASSPHRASE" -X PUT -T s3-code-deployer-$VERSION_NUMBER-el$CODE_NAME.x86_64.rpm -umiradnanali:$BINTRAY_KEY https://api.bintray.com/content/S3CodeDeployer/yum/$VERSION_NUMBER/el/$CODE_NAME/x86_64/s3-code-deployer-$VERSION_NUMBER-el$CODE_NAME.x86_64.rpm
-          # curl -v -X POST -H "X-GPG-PASSPHRASE:$GPG_PASSPHRASE" -umiradnanali:$BINTRAY_KEY https://api.bintray.com/calc_metadata/S3CodeDeployer/yum/el/$CODE_NAME/x86_64/
-
+          curl -v -H "X-Bintray-Publish:1" -H "X-Bintray-Override:1" -H "X-GPG-PASSPHRASE:$GPG_PASSPHRASE" -X PUT -T s3-code-deployer-$VERSION_NUMBER-el$CODE_NAME.x86_64.rpm -umiradnanali:$BINTRAY_KEY https://api.bintray.com/content/miradnanali/S3CodeDeployerRPM/agent/$VERSION_NUMBER/s3-code-deployer-$VERSION_NUMBER-el$CODE_NAME.x86_64.rpm
 
   yum_7:
     docker:
@@ -296,12 +285,7 @@ jobs:
           rpmbuild -ba $RPM_BUILD/SPECS/s3-code-deployer.spec
           du -sh $RPM_BUILD/RPMS/x86_64/s3-code-deployer-$VERSION_NUMBER-el$CODE_NAME.x86_64.rpm
           cp $RPM_BUILD/RPMS/x86_64/s3-code-deployer-$VERSION_NUMBER-el$CODE_NAME.x86_64.rpm .
-          curl -v -H "X-Bintray-Publish:1" -H "X-Bintray-Override:1" -H "X-GPG-PASSPHRASE:$GPG_PASSPHRASE" -X PUT -T s3-code-deployer-$VERSION_NUMBER-el$CODE_NAME.x86_64.rpm -umiradnanali:$BINTRAY_KEY https://api.bintray.com/content/S3CodeDeployer/yum/agent/$VERSION_NUMBER/s3-code-deployer-$VERSION_NUMBER-el$CODE_NAME.x86_64.rpm
-
-          # Repo File
-          # cp shared/s3-code-deployer.repo .
-          # sed -i "s/LINUX_VERSION/$CODE_NAME/g" s3-code-deployer.repo
-          # curl -v -H "X-Bintray-Publish:1" -H "X-Bintray-Override:1" -X PUT -T s3-code-deployer.repo -umiradnanali:$BINTRAY_KEY https://api.bintray.com/content/S3CodeDeployer/yum/el7/$VERSION_NUMBER/s3-code-deployer.repo
+          curl -v -H "X-Bintray-Publish:1" -H "X-Bintray-Override:1" -H "X-GPG-PASSPHRASE:$GPG_PASSPHRASE" -X PUT -T s3-code-deployer-$VERSION_NUMBER-el$CODE_NAME.x86_64.rpm -umiradnanali:$BINTRAY_KEY https://api.bintray.com/content/miradnanali/S3CodeDeployerRPM/agent/$VERSION_NUMBER/s3-code-deployer-$VERSION_NUMBER-el$CODE_NAME.x86_64.rpm
 
   # Generate Metadata
   metadata:
