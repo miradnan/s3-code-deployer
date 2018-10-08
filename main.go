@@ -26,12 +26,12 @@ func main() {
 
 	flag.Parse()
 
-	Config = config.NewConfig()
-
 	if Version {
 		fmt.Println(config.DeloyerVersion)
 		return
 	}
+
+	Config = config.NewConfig()
 
 	if Quiet {
 		color.Green("Running Quietly")

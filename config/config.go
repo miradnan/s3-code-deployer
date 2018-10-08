@@ -43,12 +43,16 @@ var (
 	DeloyerVersion string
 )
 
-func NewConfig() *Configuration {
+func init() {
 	DeloyerVersion = "VERSION_NUMBER"
+}
+
+// NewConfig
+func NewConfig() *Configuration {
 	configFile := fmt.Sprintf("%s/config.yml", filepath.Dir(GetDeployerDir()))
 
 	if _, err := os.Stat(configFile); os.IsNotExist(err) {
-		log.Fatal(color.RedString("No config.yml file found"))
+		log.Fatal(color.RedString(fmt.Sprintf("No config.yml file found in %s", configFile)))
 	}
 
 	yamlFile, err := ioutil.ReadFile(configFile)
