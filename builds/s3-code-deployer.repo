@@ -1,7 +1,7 @@
 [s3-code-deployer]
 name=s3-code-deployer
-baseurl=https://miradnanali.bintray.com/yum
-gpgkey=https://api.bintray.com/orgs/s3-code-deployer/keys/gpg/public.key
+baseurl=https://api.bintray.com/content/miradnanali/S3CodeDeployerRPM
+gpgkey=https://api.bintray.com/users/miradnanali/keys/gpg/public.key
 gpgcheck=0
 enabled=1
 repo_gpgcheck=1

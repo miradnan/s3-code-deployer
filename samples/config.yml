@@ -1,16 +1,19 @@
-name: S3CodeDeployer
-revision_check_duration: 10
+revision_check_duration: 10 // in minutes
+
 aws:
-  accessKey: XASDASDASD
-  secretKey: ASDQdijdfh892h2iu34n32
-  bucket: deploymentsbucket
-  region: ap-south-1
+  accessKey: YOUR_AWS_ACCESS_KEY
+  secretKey: YOUR_AWS_SECRET_KEY
+  bucket: YOUR_AWS_DEPLOYMENT_BUCKET
+  region: YOUR_AWS_REGION
+
 deployments:
+
 - application: staging.example.com
   environment: staging
-  destination: /Users/miradnan/workspace/go/src/github.com/miradnan/codeDeployer/appdir/staging
-  s3_revision_file: myapp/staging.tar.gz
+  destination: /var/www/html/staging.example.com
+  s3_revision_file: example.com/staging.tar.gz
+
 - application: www.example.com
   environment: production
-  destination: /Users/miradnan/workspace/go/src/github.com/miradnan/codeDeployer/appdir/production
-  s3_revision_file: myapp/prod.tar.gz
+  destination: /var/www/html/www.example.com
+  s3_revision_file: example.com/prod.tar.gz
