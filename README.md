@@ -23,29 +23,50 @@ wget - no-cache -O - https://api.bintray.com/users/miradnanali/keys/gpg/public.k
 ### Add Source List
 
 #### Ubuntu
+
+##### Bionic Beaver (18.04)
+```
+echo "deb [arch=amd64] https://dl.bintray.com/miradnanali/S3CodeDeployerDebian bionic main" > /etc/apt/sources.list.d/s3-codedeployer.list
+```
+
+##### Artful (17.10)
 ```
 echo "deb [arch=amd64] https://dl.bintray.com/miradnanali/S3CodeDeployerDebian artful main" > /etc/apt/sources.list.d/s3-codedeployer.list
 ```
+
+##### Zesty (17.04)
 ```
 echo "deb [arch=amd64] https://dl.bintray.com/miradnanali/S3CodeDeployerDebian zesty main" > /etc/apt/sources.list.d/s3-codedeployer.list
 ```
+
+##### Xenial (16.04)
 ```
 echo "deb [arch=amd64] https://dl.bintray.com/miradnanali/S3CodeDeployerDebian xenial main" > /etc/apt/sources.list.d/s3-codedeployer.list
 ```
+
+##### Trusty (14.04)
 ```
 echo "deb [arch=amd64] https://dl.bintray.com/miradnanali/S3CodeDeployerDebian trusty main" > /etc/apt/sources.list.d/s3-codedeployer.list
 ```
 
 #### Debian
+
+##### Buster (10)
 ```
 echo "deb [arch=amd64] https://dl.bintray.com/miradnanali/S3CodeDeployerDebian buster main" > /etc/apt/sources.list.d/s3-codedeployer.list
 ```
+
+##### Stretch (9)
 ```
 echo "deb [arch=amd64] https://dl.bintray.com/miradnanali/S3CodeDeployerDebian stretch main" > /etc/apt/sources.list.d/s3-codedeployer.list
 ```
+
+##### Jessie (8)
 ```
 echo "deb [arch=amd64] https://dl.bintray.com/miradnanali/S3CodeDeployerDebian jessie main" > /etc/apt/sources.list.d/s3-codedeployer.list
 ```
+
+##### Wheezy (7)
 ```
 echo "deb [arch=amd64] https://dl.bintray.com/miradnanali/S3CodeDeployerDebian wheezy main" > /etc/apt/sources.list.d/s3-codedeployer.list
 ```
@@ -54,6 +75,8 @@ echo "deb [arch=amd64] https://dl.bintray.com/miradnanali/S3CodeDeployerDebian w
 ```
 $ apt-get install s3-code-deployer
 ```
+
+
 
 See create config.yml file below
 
@@ -82,11 +105,15 @@ repo_gpgcheck=1
 " > /etc/yum.repos.d/s3-code-deployer.repo
 ```
 
-##### Update Yum cache:
-```sudo yum update```
+#### Update Yum cache:
+```
+sudo yum update
+```
 
-##### Install
-```sudo yum install -y s3-code-deployer```
+#### Install
+```
+sudo yum install -y s3-code-deployer
+```
 
 
 ### Create a `config.yml` file in `/etc/s3-code-deployer/config.yml`. Below is a Sample config.yml.
