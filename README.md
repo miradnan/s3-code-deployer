@@ -1,6 +1,6 @@
 # S3 Code Deployer
 
-[ ![Download](null/packages/miradnanali/S3CodeDeployer/apt/images/download.svg?version=1.1) ](https://bintray.com/miradnanali/S3CodeDeployer/apt/1.1/link)
+[![CircleCI](https://circleci.com/gh/miradnan/s3-code-deployer/tree/master.svg?style=svg)](https://circleci.com/gh/miradnan/s3-code-deployer/tree/master)
 
 ### Why I built this?
 I was working with an On-Prem server and I had to install AWS CodeDeploy Agent to get the CI & CD Pipeline.
