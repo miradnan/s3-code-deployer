@@ -1,6 +1,12 @@
-# S3 Code Deployer
+# DEPRECATED
+
+## S3 Code Deployer
 
 [![CircleCI](https://circleci.com/gh/miradnan/s3-code-deployer/tree/master.svg?style=svg)](https://circleci.com/gh/miradnan/s3-code-deployer/tree/master)
+
+[![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
+
+
 
 ### Why I built this?
 I was working with an On-Prem server and I had to install AWS CodeDeploy Agent to get the CI & CD Pipeline.
